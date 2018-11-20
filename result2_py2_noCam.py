@@ -25,13 +25,14 @@ window.resizable(False, False)
 label=tk.Label(window, text="미아 방지")
 label.pack()
 
+'''
 width, height = 300, 300
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
-
-
-# take image to upload data  
+'''
+'''
+# take image to upload data
 def enroll_take ():
     global index
     _, frame = cap.read()
@@ -57,6 +58,7 @@ def show_frame(lmain):
     imgtk = ImageTk.PhotoImage(image=img)
     lmain.imgtk = imgtk
     lmain.configure(image=imgtk)
+'''
 
 # update imformation
 def save_child_name(entry_name):
@@ -101,11 +103,12 @@ def save_input(entry_name,entry_Parname,entry_contact1,entry_contact2):
 
 # enrollment window
 def enrollment_information():
+    global index
     popup_enrollInformation=tk.Toplevel(window)
     popup_enrollInformation.geometry("800x800+100+100")
     popup_enrollInformation.title("정보입력")
 
-    image = tk.PhotoImage(file="opencv_frame_0.png")
+    image = tk.PhotoImage(file="test_data{}.png".format(index))
 
     label = tk.Label(popup_enrollInformation, image=image)
     label.pack()
@@ -134,15 +137,13 @@ def enrollment():
     popup_enrollment.wm_title("enrollment")
     popup_enrollment.geometry("640x400+100+100")
     popup_enrollment.tkraise(window)  # This just tells the message to be on top of the root window.
-    takeP=tk.Button(popup_enrollment, text="사진찍기", command=enroll_take)
-    reTakeP=tk.Button(popup_enrollment, text="다시찍기", command=enroll_take)
+    takeP=tk.Button(popup_enrollment, text="사진찍기")
+    reTakeP=tk.Button(popup_enrollment, text="다시찍기")
     turnNext = tk.Button(popup_enrollment, text="다음", command=enrollment_information)
     takeP.pack()
     reTakeP.pack()
     turnNext.pack()
-    lmain = tk.Label(popup_enrollment)
-    lmain.pack()
-    lmain.after(1, show_frame(lmain))
+
     popup_enrollment.mainloop()
 
 
@@ -189,6 +190,7 @@ def check_imformation():
                 find_index=int(fname.split('.')[0])
             else:
                 print("not exist child")
+    show_information()
 
 def findPar():
 
@@ -196,22 +198,20 @@ def findPar():
     popup_findPar.wm_title("findPAr")
     popup_findPar.geometry("640x400+100+100")
     popup_findPar.tkraise(window)  # This just tells the message to be on top of the    root window.
-    takenP = tk.Button(popup_findPar, text="사진찍기", command=enroll_test_take)
-    reTakenP = tk.Button(popup_findPar, text="다시찍기", command=enroll_test_take)
-    Next = tk.Button(popup_findPar, text="다음", command=check_imformation)
+    takenP = tk.Button(popup_findPar, text="사진찍기")
+    reTakenP = tk.Button(popup_findPar, text="다시찍기")
+    Next = tk.Button(popup_findPar, text="다음")
     takenP.pack()
     reTakenP.pack()
     Next.pack()
-    l = tk.Label(popup_findPar)
-    l.pack()
-    l.after(1, show_frame(l))
+
     popup_findPar.mainloop()
 
-# main window upload child imformation 
+# main window upload child imformation
 button_enrollment= tk.Button(window, text="미아등록" , command=enrollment)
 button_enrollment.pack()
 
-#main window find child button 
+#main window find child button
 button_find= tk.Button(window, text="보호자 찾기" , command=findPar)
 button_find.pack()
 

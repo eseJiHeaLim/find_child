@@ -31,7 +31,7 @@ cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 
 
-# take image to upload data  
+# take image to upload data
 def enroll_take ():
     global index
     _, frame = cap.read()
@@ -189,6 +189,7 @@ def check_imformation():
                 find_index=int(fname.split('.')[0])
             else:
                 print("not exist child")
+    show_information()
 
 def findPar():
 
@@ -207,11 +208,11 @@ def findPar():
     l.after(1, show_frame(l))
     popup_findPar.mainloop()
 
-# main window upload child imformation 
+# main window upload child imformation
 button_enrollment= tk.Button(window, text="미아등록" , command=enrollment)
 button_enrollment.pack()
 
-#main window find child button 
+#main window find child button
 button_find= tk.Button(window, text="보호자 찾기" , command=findPar)
 button_find.pack()
 

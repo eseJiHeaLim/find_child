@@ -2,7 +2,7 @@ import tkinter as tk
 import cv2
 import os
 from PIL import Image, ImageTk
-
+a="JiHea"
 width, height = 300, 300
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
@@ -37,6 +37,7 @@ def show_frame():
     lmain.after(100, show_frame)
 
 
-
+label=tk.Label(root, text= "이름"+a )
+label.pack()
 show_frame()
 root.mainloop()
